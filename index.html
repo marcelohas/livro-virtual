@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprender Juntos - Portal Inclusivo</title>
+    <meta name="description" content="Repositório de atividades escolares com foco na inclusão e neurodiversidade.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons for modern iconography -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="navbar">
+        <div class="container nav-content">
+            <div class="logo">
+                <i class="ph-fill ph-brain"></i>
+                <h1>Aprender Juntos</h1>
+            </div>
+            <nav id="top-nav">
+                <!-- Navigation links will be injected here -->
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Context -->
+    <main class="container" id="main-content">
+        <!-- Dynamic content will be rendered inside this container -->
+    </main>
+
+    <!-- Modal for Books (Embedding) -->
+    <div id="book-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="close-modal" aria-label="Fechar" onclick="closeBookModal()">
+                <i class="ph ph-x"></i>
+            </button>
+            <h2 id="modal-title">Título do Livro</h2>
+            <div class="iframe-container">
+                <iframe id="book-iframe" src="" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
