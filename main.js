@@ -15,9 +15,6 @@ const books = [
 const disciplines = [...new Set(books.map(b => b.discipline))];
 const navContainer = document.getElementById('top-nav');
 const mainContent = document.getElementById('main-content');
-const modalOverlay = document.getElementById('book-modal');
-const modalTitle = document.getElementById('modal-title');
-const bookIframe = document.getElementById('book-iframe');
 
 // Initialize app
 document.addEventListener('DOMContentLoaded', () => {
@@ -72,12 +69,15 @@ function updateActiveNav(activeView) {
 function createBookCard(book) {
     const card = document.createElement('div');
     card.className = 'card';
-    card.onclick = () => openBookModal(book);
 
     card.innerHTML = `
         <div>
             <i class="ph ph-fill ${book.icon} card-icon"></i>
-            <h3 class="card-title">${book.title}</h3>
+            <h3 class="card-title">
+                <a href="${book.url}" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">
+                    ${book.title} <i class="ph ph-arrow-square-out" style="font-size: 0.8em; margin-left: 4px;"></i>
+                </a>
+            </h3>
             <span class="card-category">${book.category || book.discipline}</span>
         </div>
         <div>
@@ -132,29 +132,4 @@ function renderDisciplinePage(discipline) {
     });
 }
 
-function openBookModal(book) {
-    modalTitle.textContent = book.title;
-    bookIframe.src = book.url;
-    modalOverlay.classList.remove('hidden');
-    document.body.style.overflow = 'hidden'; // prevent background scroll
-}
 
-function closeBookModal() {
-    modalOverlay.classList.add('hidden');
-    bookIframe.src = '';
-    document.body.style.overflow = '';
-}
-
-// Close modal on overlay click
-modalOverlay.addEventListener('click', (e) => {
-    if (e.target === modalOverlay) {
-        closeBookModal();
-    }
-});
-
-// Close modal on Escape key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        closeBookModal();
-    }
-});
