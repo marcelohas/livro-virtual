@@ -10,10 +10,12 @@ const books = [
     { id: 9, title: 'Tabuada do 8', discipline: 'Matemática', category: 'Álgebra', url: 'https://gemini.google.com/share/6d5c54baa042', views: 750, icon: 'ph-math-operations' },
     { id: 10, title: 'Tabuada do 9', discipline: 'Matemática', category: 'Álgebra', url: 'https://gemini.google.com/share/2dd77f2f0d54', views: 980, icon: 'ph-math-operations' },
     { id: 11, title: 'Medidas de Tempo', discipline: 'Matemática', category: 'Geometria', url: 'https://gemini.google.com/share/5bb448bef50e', views: 1100, icon: 'ph-clock' },
-    { id: 12, title: 'A atmosfera e os elementos do clima', discipline: 'Geografia', category: 'Geografia', url: 'https://gemini.google.com/share/098fb54fe1bf', views: 810, icon: 'ph-globe' },
+    { id: 12, title: 'A atmosfera e os elementos do tempo', discipline: 'Geografia', category: 'Geografia', url: 'https://gemini.google.com/share/12c32fabfb03', views: 810, icon: 'ph-globe' },
     { id: 13, title: 'Baixa Idade Média: mudanças no campo, arquitetura gótica, comércio e Cruzadas', discipline: 'História', category: 'História', url: 'https://gemini.google.com/share/e62ed7c1e1ab', views: 680, icon: 'ph-bank' },
     { id: 14, title: 'Geopolítica', discipline: 'Geografia', category: 'Geografia', url: 'https://gemini.google.com/share/9c27d063daf5', views: 940, icon: 'ph-map-pin' },
-    { id: 15, title: 'Revoluções Inglesas', discipline: 'História', category: 'História', url: 'https://gemini.google.com/share/9ca7419d55f8', views: 870, icon: 'ph-sword' }
+    { id: 15, title: 'Revoluções Inglesas', discipline: 'História', category: 'História', url: 'https://gemini.google.com/share/9ca7419d55f8', views: 870, icon: 'ph-sword' },
+    { id: 16, title: 'Leitura e interpretação de imagens', discipline: 'Redação', category: 'Interpretação', url: 'https://gemini.google.com/share/f2e4eabf0eaf', views: 450, icon: 'ph-image' },
+    { id: 17, title: 'Interpretação de textos curtos com apoio de imagens', discipline: 'Redação', category: 'Interpretação', url: 'https://gemini.google.com/share/cf1899e30c1d', views: 320, icon: 'ph-article' }
 ];
 
 const disciplines = [...new Set(books.map(b => b.discipline))];
