@@ -67,16 +67,19 @@ function updateActiveNav(activeView) {
 }
 
 function createBookCard(book) {
-    const card = document.createElement('div');
+    const card = document.createElement('a');
+    card.href = book.url;
+    card.target = '_blank';
+    card.rel = 'noopener noreferrer';
     card.className = 'card';
+    card.style.textDecoration = 'none';
+    card.style.color = 'inherit';
 
     card.innerHTML = `
         <div>
             <i class="ph ph-fill ${book.icon} card-icon"></i>
             <h3 class="card-title">
-                <a href="${book.url}" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">
-                    ${book.title} <i class="ph ph-arrow-square-out" style="font-size: 0.8em; margin-left: 4px;"></i>
-                </a>
+                ${book.title} <i class="ph ph-arrow-square-out" style="font-size: 0.8em; margin-left: 4px;"></i>
             </h3>
             <span class="card-category">${book.category || book.discipline}</span>
         </div>
