@@ -103,6 +103,15 @@ function createBookCard(book) {
     card.style.textDecoration = 'none';
     card.style.color = 'inherit';
 
+    const cardId = `view-badge-${book.id}`;
+    let badgeHtml = '';
+    
+    if (book.realViewsSynced) {
+        badgeHtml = `<span class="views-badge" id="${cardId}"><i class="ph ph-eye"></i> ${book.views} acessos</span>`;
+    } else {
+        badgeHtml = `<span class="views-badge" id="${cardId}"><i class="ph ph-spinner ph-spin"></i> Atualizando...</span>`;
+    }
+
     card.innerHTML = `
         <div>
             <i class="ph ph-fill ${book.icon} card-icon"></i>
@@ -113,9 +122,46 @@ function createBookCard(book) {
             <span class="card-category" style="color: #6C5CE7; font-size: 0.8rem; border: 1px solid #6C5CE7; padding: 2px 6px; border-radius: 10px;">${book.year}</span>
         </div>
         <div>
-            <span class="views-badge"><i class="ph ph-eye"></i> ${book.views} acessos</span>
+            ${badgeHtml}
         </div>
     `;
+
+    // Fetch live views if not yet synced for this session
+    if (!book.realViewsSynced) {
+        book.realViewsSynced = true; // prevent multiple ongoing fetch attempts
+        fetch(`https://api.counterapi.dev/v1/livro-virtual-books/book-${book.id}`)
+            .then(res => {
+                if (!res.ok) return { count: 0 };
+                return res.json();
+            })
+            .then(data => {
+                const extraViews = data.count || 0;
+                book.views += extraViews;
+                const badge = card.querySelector(`#${cardId}`);
+                if (badge) {
+                    badge.innerHTML = `<i class="ph ph-eye"></i> ${book.views} acessos`;
+                }
+            })
+            .catch(() => {
+                const badge = card.querySelector(`#${cardId}`);
+                if (badge) {
+                    badge.innerHTML = `<i class="ph ph-eye"></i> ${book.views} acessos`;
+                }
+            });
+    }
+
+    // Intercept click to increment API view count
+    card.addEventListener('click', () => {
+        book.views += 1; // Optimistic local UI update
+        const badge = card.querySelector(`#${cardId}`);
+        if (badge) {
+            badge.innerHTML = `<i class="ph ph-eye"></i> ${book.views} acessos`;
+        }
+        
+        // Fire and forget view increment to external service
+        fetch(`https://api.counterapi.dev/v1/livro-virtual-books/book-${book.id}/up`, { method: 'GET' })
+            .catch(err => console.error("Falha ao registrar leitura:", err));
+    });
 
     return card;
 }
