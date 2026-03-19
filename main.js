@@ -1,28 +1,34 @@
 const books = [
-    { id: 1, title: 'Cuidado ao usar as Redes Sociais', discipline: 'Tecnologia Educacional', category: 'Segurança Digital', url: 'https://gemini.google.com/share/155246e83778', views: 1540, icon: 'ph-desktop' },
-    { id: 2, title: 'Sujeito', discipline: 'Língua Portuguesa', category: 'Gramática', url: 'https://gemini.google.com/share/54315ac4f8d1', views: 1200, icon: 'ph-book-open-text' },
-    { id: 3, title: 'Substantivos', discipline: 'Língua Portuguesa', category: 'Gramática', url: 'https://gemini.google.com/share/7f9a35e931fd', views: 1850, icon: 'ph-book-open-text' },
-    { id: 4, title: 'Cuidado ao usar as Redes Sociais (Parte 2)', discipline: 'Tecnologia Educacional', category: 'Segurança Digital', url: 'https://gemini.google.com/share/291610538eb3', views: 890, icon: 'ph-desktop' },
-    { id: 5, title: 'Conjuntos Numéricos', discipline: 'Matemática', category: 'Álgebra', url: 'https://gemini.google.com/share/5e86d79092b5', views: 2100, icon: 'ph-calculator' },
-    { id: 6, title: 'Áreas das Figuras Planas', discipline: 'Matemática', category: 'Geometria', url: 'https://gemini.google.com/share/10dd5aa2284d', views: 1650, icon: 'ph-ruler' },
-    { id: 7, title: 'Tabuada do 6', discipline: 'Matemática', category: 'Álgebra', url: 'https://gemini.google.com/share/185877547028', views: 900, icon: 'ph-math-operations' },
-    { id: 8, title: 'Tabuada do 7', discipline: 'Matemática', category: 'Álgebra', url: 'https://gemini.google.com/share/8c580a0cc6ce', views: 800, icon: 'ph-math-operations' },
-    { id: 9, title: 'Tabuada do 8', discipline: 'Matemática', category: 'Álgebra', url: 'https://gemini.google.com/share/6d5c54baa042', views: 750, icon: 'ph-math-operations' },
-    { id: 10, title: 'Tabuada do 9', discipline: 'Matemática', category: 'Álgebra', url: 'https://gemini.google.com/share/2dd77f2f0d54', views: 980, icon: 'ph-math-operations' },
-    { id: 11, title: 'Medidas de Tempo', discipline: 'Matemática', category: 'Geometria', url: 'https://gemini.google.com/share/5bb448bef50e', views: 1100, icon: 'ph-clock' },
-    { id: 12, title: 'A atmosfera e os elementos do tempo', discipline: 'Geografia', category: 'Geografia', url: 'https://gemini.google.com/share/12c32fabfb03', views: 810, icon: 'ph-globe' },
-    { id: 13, title: 'Baixa Idade Média: mudanças no campo, arquitetura gótica, comércio e Cruzadas', discipline: 'História', category: 'História', url: 'https://gemini.google.com/share/e62ed7c1e1ab', views: 680, icon: 'ph-bank' },
-    { id: 14, title: 'Geopolítica', discipline: 'Geografia', category: 'Geografia', url: 'https://gemini.google.com/share/9c27d063daf5', views: 940, icon: 'ph-map-pin' },
-    { id: 15, title: 'Revoluções Inglesas', discipline: 'História', category: 'História', url: 'https://gemini.google.com/share/9ca7419d55f8', views: 870, icon: 'ph-sword' },
-    { id: 16, title: 'Leitura e interpretação de imagens', discipline: 'Redação', category: 'Interpretação', url: 'https://gemini.google.com/share/f2e4eabf0eaf', views: 450, icon: 'ph-image' },
-    { id: 17, title: 'Interpretação de textos curtos com apoio de imagens', discipline: 'Redação', category: 'Interpretação', url: 'https://gemini.google.com/share/cf1899e30c1d', views: 320, icon: 'ph-article' }
+    { id: 1, title: 'Cuidado ao usar as Redes Sociais', discipline: 'Tecnologia Educacional', category: 'Segurança Digital', year: '7º Ano', url: 'https://gemini.google.com/share/155246e83778', views: 1540, icon: 'ph-desktop' },
+    { id: 2, title: 'Sujeito', discipline: 'Língua Portuguesa', category: 'Gramática', year: '8º Ano', url: 'https://gemini.google.com/share/54315ac4f8d1', views: 1200, icon: 'ph-book-open-text' },
+    { id: 3, title: 'Substantivos', discipline: 'Língua Portuguesa', category: 'Gramática', year: '7º Ano', url: 'https://gemini.google.com/share/7f9a35e931fd', views: 1850, icon: 'ph-book-open-text' },
+    { id: 4, title: 'Cuidado ao usar as Redes Sociais (Parte 2)', discipline: 'Tecnologia Educacional', category: 'Segurança Digital', year: '8º Ano', url: 'https://gemini.google.com/share/291610538eb3', views: 890, icon: 'ph-desktop' },
+    { id: 5, title: 'Conjuntos Numéricos', discipline: 'Matemática', category: 'Álgebra', year: '8º Ano', url: 'https://gemini.google.com/share/5e86d79092b5', views: 2100, icon: 'ph-calculator' },
+    { id: 6, title: 'Áreas das Figuras Planas', discipline: 'Matemática', category: 'Geometria', year: '8º Ano', url: 'https://gemini.google.com/share/10dd5aa2284d', views: 1650, icon: 'ph-ruler' },
+    { id: 7, title: 'Tabuada do 6', discipline: 'Matemática', category: 'Álgebra', year: '7º Ano', url: 'https://gemini.google.com/share/185877547028', views: 900, icon: 'ph-math-operations' },
+    { id: 8, title: 'Tabuada do 7', discipline: 'Matemática', category: 'Álgebra', year: '7º Ano', url: 'https://gemini.google.com/share/8c580a0cc6ce', views: 800, icon: 'ph-math-operations' },
+    { id: 9, title: 'Tabuada do 8', discipline: 'Matemática', category: 'Álgebra', year: '7º Ano', url: 'https://gemini.google.com/share/6d5c54baa042', views: 750, icon: 'ph-math-operations' },
+    { id: 10, title: 'Tabuada do 9', discipline: 'Matemática', category: 'Álgebra', year: '7º Ano', url: 'https://gemini.google.com/share/2dd77f2f0d54', views: 980, icon: 'ph-math-operations' },
+    { id: 11, title: 'Medidas de Tempo', discipline: 'Matemática', category: 'Geometria', year: '7º Ano', url: 'https://gemini.google.com/share/5bb448bef50e', views: 1100, icon: 'ph-clock' },
+    { id: 12, title: 'A atmosfera e os elementos do tempo', discipline: 'Geografia', category: 'Geografia', year: '7º Ano', url: 'https://gemini.google.com/share/12c32fabfb03', views: 810, icon: 'ph-globe' },
+    { id: 13, title: 'Baixa Idade Média: mudanças no campo, arquitetura gótica, comércio e Cruzadas', discipline: 'História', category: 'História', year: '7º Ano', url: 'https://gemini.google.com/share/e62ed7c1e1ab', views: 680, icon: 'ph-bank' },
+    { id: 14, title: 'Geopolítica', discipline: 'Geografia', category: 'Geografia', year: '8º Ano', url: 'https://gemini.google.com/share/9c27d063daf5', views: 940, icon: 'ph-map-pin' },
+    { id: 15, title: 'Revoluções Inglesas', discipline: 'História', category: 'História', year: '8º Ano', url: 'https://gemini.google.com/share/9ca7419d55f8', views: 870, icon: 'ph-sword' },
+    { id: 16, title: 'Leitura e interpretação de imagens', discipline: 'Redação', category: 'Interpretação', year: '7º Ano', url: 'https://gemini.google.com/share/f2e4eabf0eaf', views: 450, icon: 'ph-image' },
+    { id: 17, title: 'Interpretação de textos curtos com apoio de imagens', discipline: 'Redação', category: 'Interpretação', year: '8º Ano', url: 'https://gemini.google.com/share/cf1899e30c1d', views: 320, icon: 'ph-article' },
+    { id: 18, title: 'Sistemas Ecológicos, Componentes do Ambiente e Hábitat', discipline: 'Ciências', category: 'Biologia', year: '7º Ano', url: 'https://gemini.google.com/share/44cdf99227cc', views: 410, icon: 'ph-plant' },
+    { id: 19, title: 'Reprodução Assexuada e Sexuada', discipline: 'Ciências', category: 'Biologia', year: '8º Ano', url: 'https://gemini.google.com/share/3298cf2111de', views: 380, icon: 'ph-dna' }
 ];
 
 const disciplines = [...new Set(books.map(b => b.discipline))];
-const navContainer = document.getElementById('top-nav');
+const years = [...new Set(books.map(b => b.year))].sort();
+
+const yearNavContainer = document.getElementById('year-nav');
+const topNavContainer = document.getElementById('top-nav');
 const mainContent = document.getElementById('main-content');
 
-// Initialize app
+let currentView = 'home'; 
+
 document.addEventListener('DOMContentLoaded', () => {
     setupNavigation();
     renderHomePage();
@@ -35,7 +41,7 @@ function setupNavigation() {
         renderHomePage();
     });
 
-    // Home Btn
+    // Home Btn on top-nav
     const homeBtn = document.createElement('button');
     homeBtn.className = 'nav-link active';
     homeBtn.dataset.view = 'home';
@@ -44,7 +50,22 @@ function setupNavigation() {
         updateActiveNav('home');
         renderHomePage();
     });
-    navContainer.appendChild(homeBtn);
+    yearNavContainer.appendChild(homeBtn);
+
+    // Years
+    years.forEach(year => {
+        const btn = document.createElement('button');
+        btn.className = 'nav-link';
+        btn.dataset.view = year;
+        btn.textContent = year.toUpperCase(); // 7ºANO, 8ºANO
+        
+        btn.addEventListener('click', () => {
+            updateActiveNav(year);
+            renderYearPage(year);
+        });
+
+        yearNavContainer.appendChild(btn);
+    });
 
     // Disciplines
     disciplines.forEach(discipline => {
@@ -58,7 +79,7 @@ function setupNavigation() {
             renderDisciplinePage(discipline);
         });
 
-        navContainer.appendChild(btn);
+        topNavContainer.appendChild(btn);
     });
 }
 
@@ -70,6 +91,7 @@ function updateActiveNav(activeView) {
             btn.classList.remove('active');
         }
     });
+    currentView = activeView;
 }
 
 function createBookCard(book) {
@@ -87,7 +109,8 @@ function createBookCard(book) {
             <h3 class="card-title">
                 ${book.title} <i class="ph ph-arrow-square-out" style="font-size: 0.8em; margin-left: 4px;"></i>
             </h3>
-            <span class="card-category">${book.category || book.discipline}</span>
+            <span class="card-category" style="display:block; margin-bottom: 5px;">${book.category || book.discipline}</span>
+            <span class="card-category" style="color: #6C5CE7; font-size: 0.8rem; border: 1px solid #6C5CE7; padding: 2px 6px; border-radius: 10px;">${book.year}</span>
         </div>
         <div>
             <span class="views-badge"><i class="ph ph-eye"></i> ${book.views} acessos</span>
@@ -98,7 +121,6 @@ function createBookCard(book) {
 }
 
 function renderHomePage() {
-    // Sort books by views (Top 5)
     mainContent.innerHTML = `
         <h2 class="section-header">Livros Mais Acessados</h2>
         <div class="grid" id="top-books-grid"></div>
@@ -112,26 +134,49 @@ function renderHomePage() {
     });
 }
 
-function renderDisciplinePage(discipline) {
-    mainContent.innerHTML = `<h2 class="section-header">${discipline}</h2>`;
+function renderYearPage(year) {
+    mainContent.innerHTML = `<h2 class="section-header">Conteúdos - ${year}</h2>`;
     
-    // Get books of this discipline
-    const disciplineBooks = books.filter(b => b.discipline === discipline);
-    
-    // Group by category
-    const categories = [...new Set(disciplineBooks.map(b => b.category))];
+    const yearBooks = books.filter(b => b.year === year);
+    const yearDisciplines = [...new Set(yearBooks.map(b => b.discipline))];
 
-    categories.forEach(category => {
+    yearDisciplines.forEach(discipline => {
         const section = document.createElement('div');
         section.className = 'subject-group';
         
         section.innerHTML = `
-            <h3>${category}</h3>
+            <h3>${discipline}</h3>
             <div class="grid"></div>
         `;
 
         const grid = section.querySelector('.grid');
-        const categoryBooks = disciplineBooks.filter(b => b.category === category);
+        const dBooks = yearBooks.filter(b => b.discipline === discipline);
+        
+        dBooks.forEach(book => {
+            grid.appendChild(createBookCard(book));
+        });
+
+        mainContent.appendChild(section);
+    });
+}
+
+function renderDisciplinePage(discipline) {
+    mainContent.innerHTML = `<h2 class="section-header">${discipline}</h2>`;
+    
+    const disciplineBooks = books.filter(b => b.discipline === discipline);
+    const dYears = [...new Set(disciplineBooks.map(b => b.year))].sort();
+
+    dYears.forEach(year => {
+        const section = document.createElement('div');
+        section.className = 'subject-group';
+        
+        section.innerHTML = `
+            <h3>${year}</h3>
+            <div class="grid"></div>
+        `;
+
+        const grid = section.querySelector('.grid');
+        const categoryBooks = disciplineBooks.filter(b => b.year === year);
         
         categoryBooks.forEach(book => {
             grid.appendChild(createBookCard(book));
@@ -140,5 +185,3 @@ function renderDisciplinePage(discipline) {
         mainContent.appendChild(section);
     });
 }
-
-
