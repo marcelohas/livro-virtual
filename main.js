@@ -19,7 +19,7 @@ const books = [
     { id: 18, title: 'Sistemas Ecológicos, Componentes do Ambiente e Hábitat', discipline: 'Ciências', category: 'Biologia', year: '7º Ano', url: 'https://gemini.google.com/share/44cdf99227cc', views: 410, icon: 'ph-plant' },
     { id: 19, title: 'Reprodução Assexuada e Sexuada', discipline: 'Ciências', category: 'Biologia', year: '8º Ano', url: 'https://gemini.google.com/share/3298cf2111de', views: 380, icon: 'ph-dna' },
     { id: 20, title: 'Davi e os Sprunkis das Boas Escolhas', discipline: 'Convívio Social', category: 'Comportamento', year: 'Convívio Social', url: 'https://gemini.google.com/share/295f5eae25fc', views: 150, icon: 'ph-users' },
-    { id: 21, title: 'Davi, Vivi e os Sprunkis das Boas Escolhas no Santa Marcelina', discipline: 'Convívio Social', category: 'Comportamento', year: 'Convívio Social', url: '#', views: 120, icon: 'ph-users' }
+    { id: 21, title: 'Davi, Vivi e os Sprunkis das Boas Escolhas no Santa Marcelina', discipline: 'Convívio Social', category: 'Comportamento', year: 'Convívio Social', url: 'https://gemini.google.com/share/e7ceaa786fef', views: 120, icon: 'ph-users' }
 ];
 
 const disciplines = [...new Set(books.map(b => b.discipline))];
