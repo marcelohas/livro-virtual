@@ -22,6 +22,9 @@ const books = [
 
 const disciplines = [...new Set(books.map(b => b.discipline))];
 const years = [...new Set(books.map(b => b.year))].sort();
+if (!years.includes('Convívio Social')) {
+    years.push('Convívio Social');
+}
 
 const yearNavContainer = document.getElementById('year-nav');
 const topNavContainer = document.getElementById('top-nav');
@@ -184,6 +187,10 @@ function renderYearPage(year) {
     mainContent.innerHTML = `<h2 class="section-header">Conteúdos - ${year}</h2>`;
     
     const yearBooks = books.filter(b => b.year === year);
+    if (yearBooks.length === 0) {
+        mainContent.innerHTML += `<p style="text-align: center; color: var(--text-color); margin-top: 2rem;">Nenhum conteúdo disponível no momento.</p>`;
+        return;
+    }
     const yearDisciplines = [...new Set(yearBooks.map(b => b.discipline))];
 
     yearDisciplines.forEach(discipline => {
