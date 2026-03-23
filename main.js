@@ -19,7 +19,10 @@ const books = [
     { id: 18, title: 'Sistemas Ecológicos, Componentes do Ambiente e Hábitat', discipline: 'Ciências', category: 'Biologia', year: '7º Ano', url: 'https://gemini.google.com/share/44cdf99227cc', views: 410, icon: 'ph-plant' },
     { id: 19, title: 'Reprodução Assexuada e Sexuada', discipline: 'Ciências', category: 'Biologia', year: '8º Ano', url: 'https://gemini.google.com/share/3298cf2111de', views: 380, icon: 'ph-dna' },
     { id: 20, title: 'Davi e os Sprunkis das Boas Escolhas', discipline: 'Convívio Social', category: 'Comportamento', year: 'Convívio Social', url: 'https://gemini.google.com/share/295f5eae25fc', views: 150, icon: 'ph-users' },
-    { id: 21, title: 'Davi, Vivi e os Sprunkis das Boas Escolhas no Santa Marcelina', discipline: 'Convívio Social', category: 'Comportamento', year: 'Convívio Social', url: 'https://gemini.google.com/share/e7ceaa786fef', views: 120, icon: 'ph-users' }
+    { id: 21, title: 'Davi, Vivi e os Sprunkis das Boas Escolhas no Santa Marcelina', discipline: 'Convívio Social', category: 'Comportamento', year: 'Convívio Social', url: 'https://gemini.google.com/share/e7ceaa786fef', views: 120, icon: 'ph-users' },
+    { id: 22, title: 'A Sala que Virou Mundo: As Aventuras Geopolíticas de Bernardo', discipline: 'Geografia', category: 'Geografia', year: '8º Ano', url: 'https://gemini.google.com/share/c59ddd90202d', views: 100, icon: 'ph-globe' },
+    { id: 23, title: 'Dignidade em Campo: A Jornada do Gabriel', discipline: 'Ensino Religioso', category: 'Ensino Religioso', year: '8º Ano', url: 'https://gemini.google.com/share/a946ef337cfb', views: 130, icon: 'ph-hands-praying' },
+    { id: 24, title: 'O Pequeno Grande Cidadão: Davi e o Ritmo da Responsabilidade', discipline: 'Ensino Religioso', category: 'Ensino Religioso', year: '7º Ano', url: 'https://gemini.google.com/share/86c3ffddfa1a', views: 140, icon: 'ph-hands-praying' }
 ];
 
 const disciplines = [...new Set(books.map(b => b.discipline))];
