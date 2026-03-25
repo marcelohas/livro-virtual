@@ -93,6 +93,18 @@ function setupNavigation() {
     });
     yearNavContainer.appendChild(homeBtn);
 
+    // Flash Cards Btn
+    const flashcardsBtn = document.createElement('button');
+    flashcardsBtn.className = 'nav-link';
+    flashcardsBtn.dataset.view = 'flashcards';
+    flashcardsBtn.textContent = 'Flash Cards';
+    flashcardsBtn.addEventListener('click', () => {
+        updateActiveNav('flashcards');
+        renderFlashcardsPage();
+        closeMobileMenu();
+    });
+    yearNavContainer.appendChild(flashcardsBtn);
+
     // Years
     years.forEach(year => {
         const btn = document.createElement('button');
@@ -277,5 +289,39 @@ function renderDisciplinePage(discipline) {
         });
 
         mainContent.appendChild(section);
+    });
+}
+
+function renderFlashcardsPage() {
+    mainContent.innerHTML = `
+        <h2 class="section-header">Flash Cards</h2>
+        <p style="text-align: center; margin-bottom: 2rem;">Clique no cartão para ver a resposta!</p>
+        <div class="flashcards-container" id="flashcards-container"></div>
+    `;
+
+    const container = document.getElementById('flashcards-container');
+
+    if (typeof flashcardsData === 'undefined' || flashcardsData.length === 0) {
+        container.innerHTML = '<p style="text-align: center;">Nenhum flashcard encontrado.</p>';
+        return;
+    }
+
+    flashcardsData.forEach((cardData, index) => {
+        const card = document.createElement('div');
+        card.className = 'flashcard';
+        card.innerHTML = `
+            <div class="flashcard-inner">
+                <div class="flashcard-front">
+                    <p>${cardData.q}</p>
+                </div>
+                <div class="flashcard-back">
+                    <p>${cardData.a}</p>
+                </div>
+            </div>
+        `;
+        card.addEventListener('click', () => {
+            card.classList.toggle('flipped');
+        });
+        container.appendChild(card);
     });
 }
