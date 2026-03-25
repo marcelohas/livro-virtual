@@ -31,13 +31,18 @@ const books = [
     { id: 30, title: 'TEA - Educação Infantil', discipline: 'Matemática', category: 'Educação Especial', year: 'Educação Infantil', url: 'assets/TEA-Matemática-EdInfantil.png', views: 25, icon: 'ph-image' },
     { id: 31, title: 'TEA - Inclusiva', discipline: 'Matemática', category: 'Educação Especial', year: '8º Ano', url: 'assets/TEA-Matemática-Inclusiva-8ºano.png', views: 30, icon: 'ph-image' },
     { id: 32, title: 'TEA - Geral', discipline: 'Matemática', category: 'Educação Especial', year: 'Geral', url: 'assets/TEA-Matemática.png', views: 45, icon: 'ph-image' },
-    { id: 33, title: 'NotebookLM- Geometria e Álgebra', discipline: 'Matemática', category: 'Matemática', year: '8º Ano', url: 'https://notebooklm.google.com/notebook/7940015d-cd33-4f8f-9882-a19a62741148', views: 10, icon: 'ph-calculator' }
+    { id: 33, title: 'NotebookLM- Geometria e Álgebra', discipline: 'Matemática', category: 'Matemática', year: 'NotebookLM', url: 'https://notebooklm.google.com/notebook/7940015d-cd33-4f8f-9882-a19a62741148', views: 10, icon: 'ph-calculator' },
+    { id: 34, title: 'NotebookLM- Redação e Gramática', discipline: 'Língua Portuguesa', category: 'Gramática', year: 'NotebookLM', url: 'https://notebooklm.google.com/notebook/31be6dc3-001e-4547-bb3e-f3f016299089', views: 10, icon: 'ph-book-open-text' },
+    { id: 35, title: 'Sintaxe e Gramática', discipline: 'Língua Portuguesa', category: 'Gramática', year: '8º Ano', url: 'assets/Sintaxe-Gramática- Língua Portuguesa-8ºano.png', views: 10, icon: 'ph-image' }
 ];
 
 const disciplines = [...new Set(books.map(b => b.discipline))];
 const years = [...new Set(books.map(b => b.year))].sort();
 if (!years.includes('Convívio Social')) {
     years.push('Convívio Social');
+}
+if (!years.includes('NotebookLM')) {
+    years.push('NotebookLM');
 }
 
 const yearNavContainer = document.getElementById('year-nav');
