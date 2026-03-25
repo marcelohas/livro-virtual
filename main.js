@@ -295,8 +295,8 @@ function renderDisciplinePage(discipline) {
 function renderFlashcardsPage() {
     mainContent.innerHTML = `
         <h2 class="section-header">Flash Cards</h2>
-        <p style="text-align: center; margin-bottom: 2rem;">Clique no cartão para ver a resposta!</p>
-        <div id="flashcards-container"></div>
+        <p style="text-align: center; margin-bottom: 2rem;">Pratique seus conhecimentos! Clique no cartão para ver a resposta.</p>
+        <div id="flashcards-container" class="flashcards-stacks-container"></div>
     `;
 
     const container = document.getElementById('flashcards-container');
@@ -307,37 +307,79 @@ function renderFlashcardsPage() {
     }
 
     for (const [topic, cards] of Object.entries(flashcardsData)) {
+        if (cards.length === 0) continue;
+        
         const cleanTopicTitle = topic.replace(/-/g, ' ').replace('flashcards', ' - ');
         
-        const section = document.createElement('div');
-        section.className = 'subject-group';
+        const stackDiv = document.createElement('div');
+        stackDiv.className = 'flashcard-stack-wrapper';
         
-        section.innerHTML = `
-            <h3>${cleanTopicTitle}</h3>
-            <div class="flashcards-container"></div>
-        `;
+        let currentIndex = 0;
         
-        const cardsGrid = section.querySelector('.flashcards-container');
-        
-        cards.forEach((cardData, index) => {
-            const card = document.createElement('div');
-            card.className = 'flashcard';
-            card.innerHTML = `
-                <div class="flashcard-inner">
-                    <div class="flashcard-front">
-                        <p>${cardData.q}</p>
-                    </div>
-                    <div class="flashcard-back">
-                        <p>${cardData.a}</p>
+        stackDiv.innerHTML = `
+            <h3 class="stack-title">${cleanTopicTitle}</h3>
+            <div class="stack-counter">
+                <span class="current-idx">1</span> / ${cards.length}
+            </div>
+            
+            <div class="flashcard-container-single">
+                <div class="flashcard">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">
+                            <p class="question-text"></p>
+                        </div>
+                        <div class="flashcard-back">
+                            <p class="answer-text"></p>
+                        </div>
                     </div>
                 </div>
-            `;
-            card.addEventListener('click', () => {
-                card.classList.toggle('flipped');
-            });
-            cardsGrid.appendChild(card);
+            </div>
+            
+            <div class="stack-controls">
+                <button class="nav-link btn-prev" disabled><i class="ph ph-caret-left"></i> Anterior</button>
+                <button class="nav-link btn-next">Próximo <i class="ph ph-caret-right"></i></button>
+            </div>
+        `;
+        
+        const cardElem = stackDiv.querySelector('.flashcard');
+        const qText = stackDiv.querySelector('.question-text');
+        const aText = stackDiv.querySelector('.answer-text');
+        const counterSpan = stackDiv.querySelector('.current-idx');
+        const btnPrev = stackDiv.querySelector('.btn-prev');
+        const btnNext = stackDiv.querySelector('.btn-next');
+        
+        function updateCardUI() {
+            cardElem.classList.remove('flipped');
+            setTimeout(() => {
+                qText.textContent = cards[currentIndex].q;
+                aText.textContent = cards[currentIndex].a;
+                counterSpan.textContent = currentIndex + 1;
+                
+                btnPrev.disabled = currentIndex === 0;
+                btnNext.disabled = currentIndex === cards.length - 1;
+            }, 100); // pequeno delay visual caso esteja flipado
+        }
+        
+        cardElem.addEventListener('click', () => {
+            cardElem.classList.toggle('flipped');
+        });
+        
+        btnPrev.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateCardUI();
+            }
+        });
+        
+        btnNext.addEventListener('click', () => {
+            if (currentIndex < cards.length - 1) {
+                currentIndex++;
+                updateCardUI();
+            }
         });
 
-        container.appendChild(section);
+        // Initialize stack state
+        updateCardUI();
+        container.appendChild(stackDiv);
     }
 }

@@ -413,3 +413,99 @@ main {
     font-size: 1.1rem;
     font-weight: 600;
 }
+
+/* Stacks Layout */
+.flashcards-stacks-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    justify-content: center;
+}
+
+.flashcard-stack-wrapper {
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 400px;
+    width: 100%;
+}
+
+.stack-title {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.stack-counter {
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    font-weight: 700;
+}
+
+.flashcard-container-single {
+    position: relative;
+    width: 320px;
+    height: 220px;
+    margin: 0 auto 2.5rem;
+}
+
+/* Fake cards under the top one to appear as a stack */
+.flashcard-container-single::before,
+.flashcard-container-single::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--card-bg);
+    border: 1px solid rgba(108, 92, 231, 0.2);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.flashcard-container-single::before {
+    top: 5px;
+    left: 4px;
+    transform: rotate(2deg);
+    z-index: 1;
+}
+
+.flashcard-container-single::after {
+    top: 10px;
+    left: 8px;
+    transform: rotate(-1.5deg);
+    z-index: 0;
+}
+
+.flashcard-container-single .flashcard {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.stack-controls {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+}
+
+.stack-controls button {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border-radius: var(--border-radius);
+}
+
+.stack-controls button:disabled {
+    opacity: 0.5;
+    background: transparent;
+    color: var(--text-color);
+    border: 1px solid #ccc;
+    cursor: not-allowed;
+}
