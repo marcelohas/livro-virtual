@@ -296,32 +296,48 @@ function renderFlashcardsPage() {
     mainContent.innerHTML = `
         <h2 class="section-header">Flash Cards</h2>
         <p style="text-align: center; margin-bottom: 2rem;">Clique no cartão para ver a resposta!</p>
-        <div class="flashcards-container" id="flashcards-container"></div>
+        <div id="flashcards-container"></div>
     `;
 
     const container = document.getElementById('flashcards-container');
 
-    if (typeof flashcardsData === 'undefined' || flashcardsData.length === 0) {
+    if (typeof flashcardsData === 'undefined' || Object.keys(flashcardsData).length === 0) {
         container.innerHTML = '<p style="text-align: center;">Nenhum flashcard encontrado.</p>';
         return;
     }
 
-    flashcardsData.forEach((cardData, index) => {
-        const card = document.createElement('div');
-        card.className = 'flashcard';
-        card.innerHTML = `
-            <div class="flashcard-inner">
-                <div class="flashcard-front">
-                    <p>${cardData.q}</p>
-                </div>
-                <div class="flashcard-back">
-                    <p>${cardData.a}</p>
-                </div>
-            </div>
+    for (const [topic, cards] of Object.entries(flashcardsData)) {
+        const cleanTopicTitle = topic.replace(/-/g, ' ').replace('flashcards', ' - ');
+        
+        const section = document.createElement('div');
+        section.className = 'subject-group';
+        
+        section.innerHTML = `
+            <h3>${cleanTopicTitle}</h3>
+            <div class="flashcards-container"></div>
         `;
-        card.addEventListener('click', () => {
-            card.classList.toggle('flipped');
+        
+        const cardsGrid = section.querySelector('.flashcards-container');
+        
+        cards.forEach((cardData, index) => {
+            const card = document.createElement('div');
+            card.className = 'flashcard';
+            card.innerHTML = `
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <p>${cardData.q}</p>
+                    </div>
+                    <div class="flashcard-back">
+                        <p>${cardData.a}</p>
+                    </div>
+                </div>
+            `;
+            card.addEventListener('click', () => {
+                card.classList.toggle('flipped');
+            });
+            cardsGrid.appendChild(card);
         });
-        container.appendChild(card);
-    });
+
+        container.appendChild(section);
+    }
 }
