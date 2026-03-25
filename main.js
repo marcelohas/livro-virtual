@@ -24,7 +24,13 @@ const books = [
     { id: 23, title: 'Dignidade em Campo: A Jornada do Gabriel', discipline: 'Ensino Religioso', category: 'Ensino Religioso', year: '8º Ano', url: 'https://gemini.google.com/share/a946ef337cfb', views: 130, icon: 'ph-hands-praying' },
     { id: 24, title: 'O Pequeno Grande Cidadão: Davi e o Ritmo da Responsabilidade', discipline: 'Ensino Religioso', category: 'Ensino Religioso', year: '7º Ano', url: 'https://gemini.google.com/share/86c3ffddfa1a', views: 140, icon: 'ph-hands-praying' },
     { id: 25, title: 'Felipe Augusto e o Expresso dos Números Mágicos', discipline: 'Matemática', category: 'Matemática', year: '3º Ano', url: 'https://gemini.google.com/share/3684f98e8bcb', views: 90, icon: 'ph-math-operations' },
-    { id: 26, title: 'O Ritmo de Ludo e Siso', discipline: 'Convívio Social', category: 'Comportamento', year: 'Convívio Social', url: 'https://gemini.google.com/share/f7ded8e40951?hl=pt', views: 110, icon: 'ph-users' }
+    { id: 26, title: 'O Ritmo de Ludo e Siso', discipline: 'Convívio Social', category: 'Comportamento', year: 'Convívio Social', url: 'https://gemini.google.com/share/f7ded8e40951?hl=pt', views: 110, icon: 'ph-users' },
+    { id: 27, title: 'Desvendando Pitágoras', discipline: 'Matemática', category: 'Geometria', year: '8º Ano', url: 'assets/Matemática-Desvendando_Pitágoras-8ºano.mp4', views: 50, icon: 'ph-video-camera' },
+    { id: 28, title: 'O Poder dos Expoentes', discipline: 'Matemática', category: 'Álgebra', year: '8º Ano', url: 'assets/Matemática__O_Poder_dos_Expoentes.mp4', views: 40, icon: 'ph-video-camera' },
+    { id: 29, title: 'Potenciação', discipline: 'Matemática', category: 'Álgebra', year: '8º Ano', url: 'assets/Potenciação-Matmemática-8ºano.png', views: 35, icon: 'ph-image' },
+    { id: 30, title: 'TEA - Educação Infantil', discipline: 'Matemática', category: 'Educação Especial', year: 'Educação Infantil', url: 'assets/TEA-Matemática-EdInfantil.png', views: 25, icon: 'ph-image' },
+    { id: 31, title: 'TEA - Inclusiva', discipline: 'Matemática', category: 'Educação Especial', year: '8º Ano', url: 'assets/TEA-Matemática-Inclusiva-8ºano.png', views: 30, icon: 'ph-image' },
+    { id: 32, title: 'TEA - Geral', discipline: 'Matemática', category: 'Educação Especial', year: 'Geral', url: 'assets/TEA-Matemática.png', views: 45, icon: 'ph-image' }
 ];
 
 const disciplines = [...new Set(books.map(b => b.discipline))];
