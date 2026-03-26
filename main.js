@@ -51,7 +51,6 @@ if (!years.includes('NotebookLM')) {
 }
 
 const yearNavContainer = document.getElementById('year-nav');
-const topNavContainer = document.getElementById('top-nav');
 const mainContent = document.getElementById('main-content');
 
 let currentView = 'home'; 
@@ -315,7 +314,7 @@ function setupNavigation() {
 
         dropdownDiv.appendChild(dropBtn);
         dropdownDiv.appendChild(dropdownContent);
-        topNavContainer.appendChild(dropdownDiv);
+        yearNavContainer.appendChild(dropdownDiv);
     }
 }
 
