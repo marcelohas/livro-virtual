@@ -199,20 +199,59 @@ function setupNavigation() {
     });
 
     // Disciplines
-    disciplines.forEach(discipline => {
-        const btn = document.createElement('button');
-        btn.className = 'nav-link';
-        btn.dataset.view = discipline;
-        btn.textContent = discipline;
+    if (disciplines.length > 0) {
+        // Sort disciplines alphabetically
+        const sortedDisciplines = disciplines.sort((a, b) => a.localeCompare(b));
+
+        const dropdownDiv = document.createElement('div');
+        dropdownDiv.className = 'dropdown';
+
+        const dropBtn = document.createElement('button');
+        dropBtn.className = 'nav-link dropbtn';
+        dropBtn.innerHTML = `Disciplinas <i class="ph ph-caret-down"></i>`;
         
-        btn.addEventListener('click', () => {
-            updateActiveNav(discipline);
-            renderDisciplinePage(discipline);
-            closeMobileMenu();
+        dropBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdownDiv.classList.toggle('active');
+            
+            // Close other dropdowns
+            document.querySelectorAll('.dropdown').forEach(dd => {
+                if(dd !== dropdownDiv) dd.classList.remove('active');
+            });
         });
 
-        topNavContainer.appendChild(btn);
-    });
+        const dropdownContent = document.createElement('div');
+        dropdownContent.className = 'dropdown-content';
+
+        sortedDisciplines.forEach(discipline => {
+            const btn = document.createElement('button');
+            btn.dataset.view = discipline;
+            btn.textContent = discipline;
+            
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                
+                // Clear active states on dropbtns
+                document.querySelectorAll('.dropdown .dropbtn').forEach(d => {
+                    d.classList.remove('active');
+                });
+                
+                // Set this dropBtn active
+                dropBtn.classList.add('active');
+
+                updateActiveNav(discipline);
+                renderDisciplinePage(discipline);
+                dropdownDiv.classList.remove('active');
+                closeMobileMenu();
+            });
+
+            dropdownContent.appendChild(btn);
+        });
+
+        dropdownDiv.appendChild(dropBtn);
+        dropdownDiv.appendChild(dropdownContent);
+        topNavContainer.appendChild(dropdownDiv);
+    }
 }
 
 
