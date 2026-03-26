@@ -33,7 +33,11 @@ const books = [
     { id: 32, title: 'TEA - Geral', discipline: 'Matemática', category: 'Educação Especial', year: 'Geral', url: 'assets/TEA-Matemática.png', views: 45, icon: 'ph-image' },
     { id: 33, title: 'NotebookLM- Geometria e Álgebra', discipline: 'Matemática', category: 'Matemática', year: 'NotebookLM', url: 'https://notebooklm.google.com/notebook/7940015d-cd33-4f8f-9882-a19a62741148', views: 10, icon: 'ph-calculator' },
     { id: 34, title: 'NotebookLM- Redação e Gramática', discipline: 'Língua Portuguesa', category: 'Gramática', year: 'NotebookLM', url: 'https://notebooklm.google.com/notebook/31be6dc3-001e-4547-bb3e-f3f016299089', views: 10, icon: 'ph-book-open-text' },
-    { id: 35, title: 'Sintaxe e Gramática', discipline: 'Língua Portuguesa', category: 'Gramática', year: '8º Ano', url: 'assets/Sintaxe-Gramática- Língua Portuguesa-8ºano.png', views: 10, icon: 'ph-image' }
+    { id: 35, title: 'Sintaxe e Gramática', discipline: 'Língua Portuguesa', category: 'Gramática', year: '8º Ano', url: 'assets/Sintaxe-Gramática- Língua Portuguesa-8ºano.png', views: 10, icon: 'ph-image' },
+    { id: 36, title: 'Gabriel e o Código Secreto da Gramática', discipline: 'Língua Portuguesa', category: 'Gramática', year: '8º Ano', url: 'https://gemini.google.com/share/dc270021a045', views: 0, icon: 'ph-book-open-text' },
+    { id: 37, title: 'O Mistério das Entrelinhas', discipline: 'Língua Portuguesa', category: 'Gramática', year: '8º Ano', url: 'https://gemini.google.com/share/1f5898e8df96', views: 0, icon: 'ph-book-open-text' },
+    { id: 38, title: 'Victoria e o Ritmo das Letras', discipline: 'Alfabetização', category: 'Alfabetização', year: 'Educação Infantil', url: 'https://gemini.google.com/share/b40829bd7375', views: 0, icon: 'ph-text-aa' },
+    { id: 39, title: 'Victoria e o Reino das Letras Mágicas', discipline: 'Alfabetização', category: 'Alfabetização', year: 'Educação Infantil', url: 'https://gemini.google.com/share/cbb7b7874c9b', views: 0, icon: 'ph-text-aa' }
 ];
 
 const disciplines = [...new Set(books.map(b => b.discipline))];
@@ -105,20 +109,93 @@ function setupNavigation() {
     });
     yearNavContainer.appendChild(flashcardsBtn);
 
-    // Years
+    // Grouped Years (Anos Iniciais / Anos Finais)
+    const yearGroups = {
+        'Anos Iniciais': ['Educação Infantil', '1º Ano', '2º Ano', '3º Ano', '4º Ano', '5º Ano'],
+        'Anos Finais': ['6º Ano', '7º Ano', '8º Ano', '9º Ano'],
+        'Outros': []
+    };
+
+    const groupedYears = {
+        'Anos Iniciais': [],
+        'Anos Finais': [],
+        'Outros': []
+    };
+
     years.forEach(year => {
-        const btn = document.createElement('button');
-        btn.className = 'nav-link';
-        btn.dataset.view = year;
-        btn.textContent = year.toUpperCase(); // 7ºANO, 8ºANO
-        
-        btn.addEventListener('click', () => {
-            updateActiveNav(year);
-            renderYearPage(year);
-            closeMobileMenu();
+        if (yearGroups['Anos Iniciais'].includes(year)) {
+            groupedYears['Anos Iniciais'].push(year);
+        } else if (yearGroups['Anos Finais'].includes(year)) {
+            groupedYears['Anos Finais'].push(year);
+        } else {
+            groupedYears['Outros'].push(year);
+        }
+    });
+
+    Object.keys(groupedYears).forEach(groupName => {
+        const groupYears = groupedYears[groupName];
+        if (groupYears.length === 0) return;
+
+        groupYears.sort((a, b) => {
+            if (groupName !== 'Outros') {
+                return yearGroups[groupName].indexOf(a) - yearGroups[groupName].indexOf(b);
+            }
+            return a.localeCompare(b);
         });
 
-        yearNavContainer.appendChild(btn);
+        const dropdownDiv = document.createElement('div');
+        dropdownDiv.className = 'dropdown';
+
+        const dropBtn = document.createElement('button');
+        dropBtn.className = 'nav-link dropbtn';
+        dropBtn.innerHTML = `${groupName} <i class="ph ph-caret-down"></i>`;
+        
+        dropBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdownDiv.classList.toggle('active');
+            
+            document.querySelectorAll('.dropdown').forEach(dd => {
+                if(dd !== dropdownDiv) dd.classList.remove('active');
+            });
+        });
+
+        const dropdownContent = document.createElement('div');
+        dropdownContent.className = 'dropdown-content';
+
+        groupYears.forEach(year => {
+            const btn = document.createElement('button');
+            btn.dataset.view = year;
+            btn.textContent = year.toUpperCase();
+            
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                
+                // Clear active states on dropbtns
+                document.querySelectorAll('.dropdown .dropbtn').forEach(d => {
+                    d.classList.remove('active');
+                });
+                
+                // The dropdown container that owns this button
+                dropBtn.classList.add('active');
+
+                updateActiveNav(year);
+                renderYearPage(year);
+                dropdownDiv.classList.remove('active');
+                closeMobileMenu();
+            });
+            dropdownContent.appendChild(btn);
+        });
+
+        dropdownDiv.appendChild(dropBtn);
+        dropdownDiv.appendChild(dropdownContent);
+        yearNavContainer.appendChild(dropdownDiv);
+    });
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', () => {
+        document.querySelectorAll('.dropdown').forEach(dd => {
+            dd.classList.remove('active');
+        });
     });
 
     // Disciplines
