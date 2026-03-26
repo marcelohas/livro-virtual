@@ -124,22 +124,33 @@ body.dark-mode .search-container {
 
 nav#year-nav {
     display: flex;
-    gap: 1.5rem;
-    flex-wrap: wrap;
+    gap: 0.5rem;
+    flex-wrap: nowrap;
     border-bottom: 2px solid var(--accent);
     padding-bottom: 0.5rem;
+    overflow-x: auto;
+    max-width: 100%;
+}
+/* Hide scrollbar for cleaner look if it slightly overscrolls */
+nav#year-nav::-webkit-scrollbar {
+    display: none;
+}
+nav#year-nav {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
 
 .nav-link {
     background: transparent;
     border: none;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
     color: var(--text-color);
     cursor: pointer;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0.75rem;
     border-radius: var(--border-radius);
     transition: var(--transition);
+    white-space: nowrap;
 }
 
 .nav-link:hover, .nav-link.active {
