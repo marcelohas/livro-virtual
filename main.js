@@ -37,7 +37,8 @@ const books = [
     { id: 36, title: 'Gabriel e o Código Secreto da Gramática', discipline: 'Língua Portuguesa', category: 'Gramática', year: '8º Ano', url: 'https://gemini.google.com/share/dc270021a045', views: 0, icon: 'ph-book-open-text' },
     { id: 37, title: 'O Mistério das Entrelinhas', discipline: 'Língua Portuguesa', category: 'Gramática', year: '8º Ano', url: 'https://gemini.google.com/share/1f5898e8df96', views: 0, icon: 'ph-book-open-text' },
     { id: 38, title: 'Victoria e o Ritmo das Letras', discipline: 'Alfabetização', category: 'Alfabetização', year: 'Educação Infantil', url: 'https://gemini.google.com/share/b40829bd7375', views: 0, icon: 'ph-text-aa' },
-    { id: 39, title: 'Victoria e o Reino das Letras Mágicas', discipline: 'Alfabetização', category: 'Alfabetização', year: 'Educação Infantil', url: 'https://gemini.google.com/share/cbb7b7874c9b', views: 0, icon: 'ph-text-aa' }
+    { id: 39, title: 'Victoria e o Reino das Letras Mágicas', discipline: 'Alfabetização', category: 'Alfabetização', year: 'Educação Infantil', url: 'https://gemini.google.com/share/cbb7b7874c9b', views: 0, icon: 'ph-text-aa' },
+    { id: 40, title: 'Arquitetura do Predicado', discipline: 'Língua Portuguesa', category: 'Gramática', year: '8º Ano', url: 'assets/Arquitetura_do_Predicado.pptx', views: 0, icon: 'ph-presentation-chart' }
 ];
 
 const disciplines = [...new Set(books.map(b => b.discipline))];
@@ -57,8 +58,30 @@ let currentView = 'home';
 
 document.addEventListener('DOMContentLoaded', () => {
     setupNavigation();
+    setupModal();
     renderHomePage();
 });
+
+function setupModal() {
+    const modal = document.getElementById('content-modal');
+    const closeBtn = document.getElementById('close-modal');
+    const iframe = document.getElementById('modal-iframe');
+
+    if (!modal) return;
+
+    closeBtn.addEventListener('click', () => {
+        modal.classList.add('hidden');
+        iframe.src = '';
+    });
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.add('hidden');
+            iframe.src = '';
+        }
+    });
+}
+
 
 function setupNavigation() {
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
@@ -268,12 +291,26 @@ function updateActiveNav(activeView) {
 
 function createBookCard(book) {
     const card = document.createElement('a');
+    
+    // Default config
     card.href = book.url;
     card.target = '_blank';
     card.rel = 'noopener noreferrer';
     card.className = 'card';
     card.style.textDecoration = 'none';
     card.style.color = 'inherit';
+
+    // We will intercept the click for specific types
+    const isPPTX = book.url.toLowerCase().endsWith('.pptx');
+    const isMP4 = book.url.toLowerCase().endsWith('.mp4');
+    const isPNG = book.url.toLowerCase().endsWith('.png');
+    const isEmbeddable = isPPTX || isMP4 || isPNG;
+
+    if (isEmbeddable) {
+        card.href = '#';
+        card.removeAttribute('target');
+        card.removeAttribute('rel');
+    }
 
     const cardId = `view-badge-${book.id}`;
     let badgeHtml = '';
@@ -322,8 +359,30 @@ function createBookCard(book) {
             });
     }
 
-    // Intercept click to increment API view count
-    card.addEventListener('click', () => {
+    // Intercept click to increment API view count and potentially open modal
+    card.addEventListener('click', (e) => {
+        if (isEmbeddable) {
+            e.preventDefault();
+            const modal = document.getElementById('content-modal');
+            const iframe = document.getElementById('modal-iframe');
+            const modalTitle = document.getElementById('modal-title');
+            
+            if (modal && iframe) {
+                modalTitle.textContent = book.title;
+                
+                if (isPPTX) {
+                    // Embed PPTX using Office Web Viewer
+                    // Must use the absolute github pages URL to allow microsoft to access it
+                    const publicUrl = `https://marcelohas.github.io/livro-virtual/${book.url}`;
+                    iframe.src = `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(publicUrl)}`;
+                } else {
+                    iframe.src = book.url;
+                }
+                
+                modal.classList.remove('hidden');
+            }
+        }
+
         book.views += 1; // Optimistic local UI update
         const badge = card.querySelector(`#${cardId}`);
         if (badge) {

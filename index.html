@@ -40,6 +40,17 @@
         <!-- Dynamic content will be rendered inside this container -->
     </main>
 
+    <!-- Modal for embedding presentations and other content -->
+    <div id="content-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button id="close-modal" class="close-modal" aria-label="Fechar"><i class="ph ph-x"></i></button>
+            <h2 id="modal-title">Conteúdo</h2>
+            <div class="iframe-container">
+                <iframe id="modal-iframe" src="" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
     <script src="flashcardsData.js"></script>
     <script src="main.js"></script>
 </body>
