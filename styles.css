@@ -125,19 +125,10 @@ body.dark-mode .search-container {
 nav#year-nav {
     display: flex;
     gap: 0.5rem;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     border-bottom: 2px solid var(--accent);
     padding-bottom: 0.5rem;
-    overflow-x: auto;
     max-width: 100%;
-}
-/* Hide scrollbar for cleaner look if it slightly overscrolls */
-nav#year-nav::-webkit-scrollbar {
-    display: none;
-}
-nav#year-nav {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
 }
 
 .nav-link {
