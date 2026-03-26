@@ -101,6 +101,23 @@ function setupNavigation() {
         }
     }
 
+    // Search Logic
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase().trim();
+            if (term.length > 0) {
+                renderSearchResults(term);
+                updateActiveNav('search');
+            } else {
+                updateActiveNav('home');
+                renderHomePage();
+            }
+        });
+    }
+
+
+
     // Logo Click (Home)
     document.querySelector('.logo').addEventListener('click', () => {
         updateActiveNav('home');
@@ -132,32 +149,57 @@ function setupNavigation() {
     });
     yearNavContainer.appendChild(flashcardsBtn);
 
-    // Grouped Years (Anos Iniciais / Anos Finais)
+    // Grouped Years
     const yearGroups = {
-        'Anos Iniciais': ['Educação Infantil', '1º Ano', '2º Ano', '3º Ano', '4º Ano', '5º Ano'],
+        'Educação Infantil': ['Educação Infantil'],
+        'Anos Iniciais': ['1º Ano', '2º Ano', '3º Ano', '4º Ano', '5º Ano'],
         'Anos Finais': ['6º Ano', '7º Ano', '8º Ano', '9º Ano'],
         'Outros': []
     };
 
     const groupedYears = {
+        'Educação Infantil': [],
         'Anos Iniciais': [],
         'Anos Finais': [],
         'Outros': []
     };
 
     years.forEach(year => {
-        if (yearGroups['Anos Iniciais'].includes(year)) {
-            groupedYears['Anos Iniciais'].push(year);
-        } else if (yearGroups['Anos Finais'].includes(year)) {
-            groupedYears['Anos Finais'].push(year);
-        } else {
-            groupedYears['Outros'].push(year);
+        let found = false;
+        for (const [group, yArr] of Object.entries(yearGroups)) {
+            if (group !== 'Outros' && yArr.includes(year)) {
+                groupedYears[group].push(year);
+                found = true;
+                break;
+            }
         }
+        if (!found) groupedYears['Outros'].push(year);
     });
 
     Object.keys(groupedYears).forEach(groupName => {
         const groupYears = groupedYears[groupName];
         if (groupYears.length === 0) return;
+
+        // Render as single button if it's the exact match
+        if (groupYears.length === 1 && groupName !== 'Outros' && groupName === groupYears[0]) {
+            const year = groupYears[0];
+            const btn = document.createElement('button');
+            btn.className = 'nav-link';
+            btn.dataset.view = year;
+            btn.textContent = year.toUpperCase();
+            
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.dropdown .dropbtn').forEach(d => {
+                    d.classList.remove('active');
+                });
+                
+                updateActiveNav(year);
+                renderYearPage(year);
+                closeMobileMenu();
+            });
+            yearNavContainer.appendChild(btn);
+            return;
+        }
 
         groupYears.sort((a, b) => {
             if (groupName !== 'Outros') {
@@ -409,6 +451,35 @@ function renderHomePage() {
     topBooks.forEach(book => {
         grid.appendChild(createBookCard(book));
     });
+}
+
+function renderSearchResults(term) {
+    mainContent.innerHTML = `<h2 class="section-header">Resultados para: "${term}"</h2>`;
+    
+    // Normalize string to ignore accents
+    const normalize = str => str ? str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase() : '';
+    const normTerm = normalize(term);
+
+    const results = books.filter(b => 
+        normalize(b.title).includes(normTerm) ||
+        normalize(b.discipline).includes(normTerm) ||
+        normalize(b.category).includes(normTerm) ||
+        normalize(b.year).includes(normTerm)
+    );
+
+    if (results.length === 0) {
+        mainContent.innerHTML += `<p style="text-align: center; color: var(--text-color); margin-top: 2rem;">Nenhum conteúdo encontrado para esta busca.</p>`;
+        return;
+    }
+
+    const grid = document.createElement('div');
+    grid.className = 'grid';
+
+    results.forEach(book => {
+        grid.appendChild(createBookCard(book));
+    });
+
+    mainContent.appendChild(grid);
 }
 
 function renderYearPage(year) {
