@@ -25,12 +25,12 @@ const books = [
     { id: 24, title: 'O Pequeno Grande Cidadão: Davi e o Ritmo da Responsabilidade', discipline: 'Ensino Religioso', category: 'Ensino Religioso', year: '7º Ano', url: 'https://gemini.google.com/share/86c3ffddfa1a', views: 140, icon: 'ph-hands-praying' },
     { id: 25, title: 'Felipe Augusto e o Expresso dos Números Mágicos', discipline: 'Matemática', category: 'Matemática', year: '3º Ano', url: 'https://gemini.google.com/share/3684f98e8bcb', views: 90, icon: 'ph-math-operations' },
     { id: 26, title: 'O Ritmo de Ludo e Siso', discipline: 'Convívio Social', category: 'Comportamento', year: 'Convívio Social', url: 'https://gemini.google.com/share/f7ded8e40951?hl=pt', views: 110, icon: 'ph-users' },
-    { id: 27, title: 'Desvendando Pitágoras', discipline: 'Matemática', category: 'Geometria', year: '8º Ano', url: 'assets/Matemática-Desvendando_Pitágoras-8ºano.mp4', views: 50, icon: 'ph-video-camera' },
-    { id: 28, title: 'O Poder dos Expoentes', discipline: 'Matemática', category: 'Álgebra', year: '8º Ano', url: 'assets/Matemática__O_Poder_dos_Expoentes.mp4', views: 40, icon: 'ph-video-camera' },
-    { id: 29, title: 'Potenciação', discipline: 'Matemática', category: 'Álgebra', year: '8º Ano', url: 'assets/Potenciação-Matmemática-8ºano.png', views: 35, icon: 'ph-image' },
+    { id: 27, title: 'Desvendando Pitágoras', discipline: 'Matemática', category: 'Álgebra', year: '8º Ano', url: 'assets/Desvendando_Pitágoras-Álgebra-8ºano-Anos_Finais.mp4', views: 50, icon: 'ph-video-camera' },
+    { id: 28, title: 'O Poder dos Expoentes', discipline: 'Matemática', category: 'Álgebra', year: '8º Ano', url: 'assets/Matemática__O_Poder_dos_Expoentes-Álgebra-Matemática-8ºano-Anos_Finais.mp4', views: 40, icon: 'ph-video-camera' },
+    { id: 29, title: 'O guia mágico da potenciação', discipline: 'Matemática', category: 'Álgebra', year: '8º Ano', url: 'assets/O_guia_mágico_da_potenciação_-_Álgebra-Matemática-8ºano-Anos_Finais.png', views: 35, icon: 'ph-image' },
     { id: 30, title: 'TEA - Educação Infantil', discipline: 'Matemática', category: 'Educação Especial', year: 'Educação Infantil', url: 'assets/TEA-Matemática-EdInfantil.png', views: 25, icon: 'ph-image' },
-    { id: 31, title: 'TEA - Inclusiva', discipline: 'Matemática', category: 'Educação Especial', year: '8º Ano', url: 'assets/TEA-Matemática-Inclusiva-8ºano.png', views: 30, icon: 'ph-image' },
-    { id: 32, title: 'TEA - Geral', discipline: 'Matemática', category: 'Educação Especial', year: 'Geral', url: 'assets/TEA-Matemática.png', views: 45, icon: 'ph-image' },
+    { id: 31, title: 'O guia mágico da educação inclusiva', discipline: 'Matemática', category: 'Educação Especial', year: '8º Ano', url: 'assets/O_guia_mágico_da_educação_inclusiva-_Álgebra-8ºano-Anos_Finais.png', views: 30, icon: 'ph-image' },
+    { id: 32, title: 'Matemática Inclusiva', discipline: 'Matemática', category: 'Educação Especial', year: 'Educação Infantil', url: 'assets/Matemática_Inclusiva-Educação_Infantil.png', views: 45, icon: 'ph-image' },
     { id: 33, title: 'NotebookLM- Geometria e Álgebra', discipline: 'Matemática', category: 'Matemática', year: 'NotebookLM', url: 'https://notebooklm.google.com/notebook/7940015d-cd33-4f8f-9882-a19a62741148', views: 10, icon: 'ph-calculator' },
     { id: 34, title: 'NotebookLM- Redação e Gramática', discipline: 'Língua Portuguesa', category: 'Gramática', year: 'NotebookLM', url: 'https://notebooklm.google.com/notebook/31be6dc3-001e-4547-bb3e-f3f016299089', views: 10, icon: 'ph-book-open-text' },
     { id: 35, title: 'Sintaxe e Gramática', discipline: 'Língua Portuguesa', category: 'Gramática', year: '8º Ano', url: 'assets/Sintaxe-Gramática- Língua Portuguesa-8ºano.png', views: 10, icon: 'ph-image' },
@@ -38,7 +38,9 @@ const books = [
     { id: 37, title: 'O Mistério das Entrelinhas', discipline: 'Língua Portuguesa', category: 'Gramática', year: '8º Ano', url: 'https://gemini.google.com/share/1f5898e8df96', views: 0, icon: 'ph-book-open-text' },
     { id: 38, title: 'Victoria e o Ritmo das Letras', discipline: 'Alfabetização', category: 'Alfabetização', year: 'Educação Infantil', url: 'https://gemini.google.com/share/b40829bd7375', views: 0, icon: 'ph-text-aa' },
     { id: 39, title: 'Victoria e o Reino das Letras Mágicas', discipline: 'Alfabetização', category: 'Alfabetização', year: 'Educação Infantil', url: 'https://gemini.google.com/share/cbb7b7874c9b', views: 0, icon: 'ph-text-aa' },
-    { id: 40, title: 'Arquitetura do Predicado', discipline: 'Língua Portuguesa', category: 'Gramática', year: '8º Ano', url: 'assets/Arquitetura_do_Predicado.pptx', views: 0, icon: 'ph-presentation-chart' }
+    { id: 40, title: 'Arquitetura do Predicado', discipline: 'Língua Portuguesa', category: 'Gramática', year: '8º Ano', url: 'assets/Arquitetura_do_Predicado.pptx', views: 0, icon: 'ph-presentation-chart' },
+    { id: 41, title: 'Como se Constroem Histórias', discipline: 'Língua Portuguesa', category: 'Redação', year: 'Geral', url: 'assets/Como_se_Constroem_Histórias-LínguaPortuguesa.mp4', views: 0, icon: 'ph-video-camera' },
+    { id: 42, title: 'Potenciação (Álgebra)', discipline: 'Matemática', category: 'Álgebra', year: '8º Ano', url: 'assets/Potenciação-Álgebra-8ºano-Anos_Finais.png', views: 0, icon: 'ph-image' }
 ];
 
 const disciplines = [...new Set(books.map(b => b.discipline))];
