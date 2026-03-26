@@ -138,18 +138,6 @@ function setupNavigation() {
     });
     yearNavContainer.appendChild(homeBtn);
 
-    // Flash Cards Btn
-    const flashcardsBtn = document.createElement('button');
-    flashcardsBtn.className = 'nav-link';
-    flashcardsBtn.dataset.view = 'flashcards';
-    flashcardsBtn.textContent = 'Flash Cards';
-    flashcardsBtn.addEventListener('click', () => {
-        updateActiveNav('flashcards');
-        renderFlashcardsPage();
-        closeMobileMenu();
-    });
-    yearNavContainer.appendChild(flashcardsBtn);
-
     // Grouped Years
     const yearGroups = {
         'Educação Infantil': ['Educação Infantil'],
@@ -251,6 +239,27 @@ function setupNavigation() {
             });
             dropdownContent.appendChild(btn);
         });
+
+        if (groupName === 'Outros') {
+            const fcBtn = document.createElement('button');
+            fcBtn.dataset.view = 'flashcards';
+            fcBtn.textContent = 'FLASH CARDS';
+            fcBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                
+                document.querySelectorAll('.dropdown .dropbtn').forEach(d => {
+                    d.classList.remove('active');
+                });
+                
+                dropBtn.classList.add('active');
+
+                updateActiveNav('flashcards');
+                renderFlashcardsPage();
+                dropdownDiv.classList.remove('active');
+                closeMobileMenu();
+            });
+            dropdownContent.appendChild(fcBtn);
+        }
 
         dropdownDiv.appendChild(dropBtn);
         dropdownDiv.appendChild(dropdownContent);
