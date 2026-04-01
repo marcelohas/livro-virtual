@@ -40,7 +40,13 @@ const books = [
     { id: 39, title: 'Victoria e o Reino das Letras Mágicas', discipline: 'Alfabetização', category: 'Alfabetização', year: 'Educação Infantil', url: 'https://gemini.google.com/share/cbb7b7874c9b', views: 0, icon: 'ph-text-aa' },
     { id: 40, title: 'Arquitetura do Predicado', discipline: 'Língua Portuguesa', category: 'Gramática', year: '8º Ano', url: 'assets/Arquitetura_do_Predicado.pptx', views: 0, icon: 'ph-presentation-chart' },
     { id: 41, title: 'Como se Constroem Histórias', discipline: 'Língua Portuguesa', category: 'Redação', year: 'Geral', url: 'assets/Como_se_Constroem_Histórias-LínguaPortuguesa.mp4', views: 0, icon: 'ph-video-camera' },
-    { id: 42, title: 'Potenciação (Álgebra)', discipline: 'Matemática', category: 'Álgebra', year: '8º Ano', url: 'assets/Potenciação-Álgebra-8ºano-Anos_Finais.png', views: 0, icon: 'ph-image' }
+    { id: 42, title: 'Potenciação (Álgebra)', discipline: 'Matemática', category: 'Álgebra', year: '8º Ano', url: 'assets/Potenciação-Álgebra-8ºano-Anos_Finais.png', views: 0, icon: 'ph-image' },
+    { id: 43, title: 'A Fábrica dos Sentidos', discipline: 'Educação Infantil', category: 'Alfabetização', year: 'Educação Infantil', url: 'https://gemini.google.com/share/8771a2fc874c', views: 0, icon: 'ph-text-aa' },
+    { id: 44, title: 'O Segredo dos Padrões da Cidade', discipline: 'Educação Infantil', category: 'Alfabetização', year: 'Educação Infantil', url: 'https://gemini.google.com/share/ede31e30f877', views: 0, icon: 'ph-text-aa' },
+    { id: 45, title: 'A Máquina dos Sonhos', discipline: 'Educação Infantil', category: 'Alfabetização', year: 'Educação Infantil', url: 'https://gemini.google.com/share/2adfa917639a', views: 0, icon: 'ph-text-aa' },
+    { id: 46, title: 'O Jardim dos Sussurros e Segredos', discipline: 'Educação Infantil', category: 'Alfabetização', year: 'Educação Infantil', url: 'https://gemini.google.com/share/64e6ee65cf35', views: 0, icon: 'ph-text-aa' },
+    { id: 47, title: 'Atividade de Educação Infantil', discipline: 'Educação Infantil', category: 'Alfabetização', year: 'Educação Infantil', url: 'https://gemini.google.com/share/fa526d0af68b', views: 0, icon: 'ph-text-aa' },
+    { id: 48, title: 'O Quintal Colorido da Escola', discipline: 'Educação Infantil', category: 'Alfabetização', year: 'Educação Infantil', url: 'https://gemini.google.com/share/8f223fa29379', views: 0, icon: 'ph-text-aa' }
 ];
 
 const disciplines = [...new Set(books.map(b => b.discipline))];
